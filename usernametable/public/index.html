@@ -28,7 +28,13 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="notRoot">
+      <input type="text" id="search" onkeyup="filterTable()" placeholder="Search for names.." title="Type in a name">
+      <p><button onclick="sortTable()">Sort</button></p>
+    </div>
+    <div id="root">
+      
+    </div>
     <script>
       function sortTable(){
         var e,t,r,n,o,a,s;
