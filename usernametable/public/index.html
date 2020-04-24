@@ -29,15 +29,20 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <script>
+      function sortTable(){
+        var e,t,r,n,o,a,s;
+        for(e=document.getElementById("master"),r=!0;r;){
+          for(r=!1,t=e.rows,n=1;n<t.length-1;n++)if(s=!1,o=t[n].getElementsByTagName("TD")[0],a=t[n+1].getElementsByTagName("TD")[0],o.innerHTML.toLowerCase()>a.innerHTML.toLowerCase()){
+            s=!0;break
+          }s&&(t[n].parentNode.insertBefore(t[n+1],t[n]),r=!0)
+        }
+      }
+  
+      function filterTable(){
+        var e,t,n,a;for(e=document.getElementById("search").value.toUpperCase(),
+        t=document.getElementById("master").getElementsByTagName("tr"),a=0;a<t.length;a++)(n=t[a].getElementsByTagName("td")[0])&&(-1<(n.textContent||n.innerText).toUpperCase().indexOf(e)?t[a].style.display="":t[a].style.display="none")
+      }
+      </script>
   </body>
 </html>

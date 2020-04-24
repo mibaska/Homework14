@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Table</title>
+  </head>
+  <body>
+    <input type="text" id="search" onkeyup="filterTable()" placeholder="Search for names.." title="Type in a name">
+    <p><button onclick="sortTable()">Sort</button></p>
+    <table id="master">
+      <tr>
+        <th id="lastNameHead">Last Name</th>
+        <th id="firstNameHead">First Name</th>
+        <th id="positionHead">Position</th>
+        <th id="departmentHead">Department</th>
+        <th id="managerHead">Manager</th>
+      </tr>
+      <tr class="employee">
+        <td class="lastName">Smith</td>
+        <td class="firstName">James</td>
+        <td class="position">Manager</td>
+        <td class="department">Front-End</td>
+        <td class="manager">NULL</td>
+      </tr>
+      <tr class="employee">
+        <td class="lastName">Johnson</td>
+        <td class="firstName">John</td>
+        <td class="position">Manager</td>
+        <td class="department">Back-End</td>
+        <td class="manager">NULL</td>
+      </tr>
+      <tr class="employee">
+        <td class="lastName">Williams</td>
+        <td class="firstName">Robert</td>
+        <td class="position">Engineer</td>
+        <td class="department">Front-End</td>
+        <td class="manager">James Smith</td>
+      </tr>
+      <tr class="employee">
+        <td class="lastName">Brown</td>
+        <td class="firstName">Michael</td>
+        <td class="position">Engineer</td>
+        <td class="department">Back-End</td>
+        <td class="manager">John Johnson</td>
+      </tr>
+      <tr class="employee">
+        <td class="lastName">Jones</td>
+        <td class="firstName">William</td>
+        <td class="position">Intern</td>
+        <td class="department">Back-End</td>
+        <td class="manager">John Johnson</td>
+      </tr>
+    </table>
+    <script>
+      function sortTable(){
+        var e,t,r,n,o,a,s;
+        for(e=document.getElementById("master"),r=!0;r;){
+          for(r=!1,t=e.rows,n=1;n<t.length-1;n++)if(s=!1,o=t[n].getElementsByTagName("TD")[0],a=t[n+1].getElementsByTagName("TD")[0],o.innerHTML.toLowerCase()>a.innerHTML.toLowerCase()){
+            s=!0;break
+          }s&&(t[n].parentNode.insertBefore(t[n+1],t[n]),r=!0)
+        }
+      }
+
+      function filterTable(){
+        var e,t,n,a;for(e=document.getElementById("search").value.toUpperCase(),
+        t=document.getElementById("master").getElementsByTagName("tr"),a=0;a<t.length;a++)(n=t[a].getElementsByTagName("td")[0])&&(-1<(n.textContent||n.innerText).toUpperCase().indexOf(e)?t[a].style.display="":t[a].style.display="none")
+      }
+      </script>
+  </body>
+</html>
