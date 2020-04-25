@@ -11,9 +11,8 @@ const managers = ["NULL", "NULL", "James Smith", "John Johnson", "John Johnson"]
 
 function App() {
   const filterTable = () => {var e,t,n,a;for(e=document.value.toUpperCase(),t=document.getElementsByTagName("table").getElementsByTagName("tr"),a=0;a<t.length;a++)(n=t[a].getElementsByTagName("td")[0])&&(-1<(n.textContent||n.innerText).toUpperCase().indexOf(e)?t[a].style.display="":t[a].style.display="none")};
-  const sortTable = () => {var e,t,r,n,o,a,s;for(e=document.getElementById("master"),r=!0;r;){for(r=!1,t=e.rows,n=1;n<t.length-1;n++)if(s=!1,o=t[n].getElementsByTagName("TD")[0],a=t[n+1].getElementsByTagName("TD")[0],o.innerHTML.toLowerCase()>a.innerHTML.toLowerCase()){s=!0;break}s&&(t[n].parentNode.insertBefore(t[n+1],t[n]),r=!0)}};
+  const sortTable = () => {var e,t,r,n,o,a,s;for(e=document.getElementsByTagName("table"),r=!0;r;){for(r=!1,t=e.rows,n=1;n<t.length-1;n++)if(s=!1,o=t[n].getElementsByTagName("TD")[0],a=t[n+1].getElementsByTagName("TD")[0],o.innerHTML.toLowerCase()>a.innerHTML.toLowerCase()){s=!0;break}s&&(t[n].parentNode.insertBefore(t[n+1],t[n]),r=!0)}};
   var table = document.createElement("table");
-  table.id = "master";
   var rowHead = document.createElement("tr");
   var lastNameHead = document.createElement("th");
   lastNameHead.innerText = headers[0];

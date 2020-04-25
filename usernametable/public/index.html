@@ -10,45 +10,11 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="notRoot">
-      <input type="text" id="search" onkeyup="filterTable()" placeholder="Search for names.." title="Type in a name">
-      <p><button onclick="sortTable()">Sort</button></p>
-    </div>
-    <div id="root">
-      
-    </div>
-    <script>
-      function sortTable(){
-        var e,t,r,n,o,a,s;
-        for(e=document.getElementById("master"),r=!0;r;){
-          for(r=!1,t=e.rows,n=1;n<t.length-1;n++)if(s=!1,o=t[n].getElementsByTagName("TD")[0],a=t[n+1].getElementsByTagName("TD")[0],o.innerHTML.toLowerCase()>a.innerHTML.toLowerCase()){
-            s=!0;break
-          }s&&(t[n].parentNode.insertBefore(t[n+1],t[n]),r=!0)
-        }
-      }
-  
-      function filterTable(){
-        var e,t,n,a;for(e=document.getElementById("search").value.toUpperCase(),
-        t=document.getElementById("master").getElementsByTagName("tr"),a=0;a<t.length;a++)(n=t[a].getElementsByTagName("td")[0])&&(-1<(n.textContent||n.innerText).toUpperCase().indexOf(e)?t[a].style.display="":t[a].style.display="none")
-      }
-      </script>
+    <div id="root"></div>
   </body>
 </html>
