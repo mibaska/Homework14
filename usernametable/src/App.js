@@ -10,10 +10,8 @@ const departments = ["Front-End", "Back-End", "Front-End", "Back-End", "Back-End
 const managers = ["NULL", "NULL", "James Smith", "John Johnson", "John Johnson"];
 
 function App() {
-  const filterTable = () => {var e,t,n,a;for(e=document.value.toUpperCase(),t=document.getElementsByTagName("table").getElementsByTagName("tr"),a=0;a<t.length;a++)(n=t[a].getElementsByTagName("td")[0])&&(-1<(n.textContent||n.innerText).toUpperCase().indexOf(e)?t[a].style.display="":t[a].style.display="none")};
-  const sortTable = () => {var e,t,r,n,o,a,s;for(e=document.getElementById("master"),r=!0;r;){for(r=!1,t=e.rows,n=1;n<t.length-1;n++)if(s=!1,o=t[n].getElementsByTagName("TD")[0],a=t[n+1].getElementsByTagName("TD")[0],o.innerHTML.toLowerCase()>a.innerHTML.toLowerCase()){s=!0;break}s&&(t[n].parentNode.insertBefore(t[n+1],t[n]),r=!0)}};
   var table = document.createElement("table");
-  table.id = "master";
+  table.setAttribute("id", "master");
   var rowHead = document.createElement("tr");
   var lastNameHead = document.createElement("th");
   lastNameHead.innerText = headers[0];
@@ -52,8 +50,47 @@ function App() {
   }
   return (
     <div className="App" ref={node => node.appendChild(table)}>
-      <input type="text" id="search" onkeyup={filterTable()} placeholder="Search for names.." title="Type in a name"/>
-      <p><button onclick={sortTable()}>Sort</button></p>
+      <input type="text" id="search" onKeyUp={function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search");
+        filter = input.value.toLowerCase();
+        table = document.getElementById("master");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toLowerCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }} placeholder="Search for names.." title="Type in a name"/>
+      <p><button onClick={function sortTable() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("master");
+        switching = true;
+        while (switching) {
+          switching = false;
+          rows = table.rows;
+          for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[0];
+            y = rows[i + 1].getElementsByTagName("TD")[0];
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              shouldSwitch = true;
+              break;
+            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }}>Sort</button></p>
     </div>
   );
 }
